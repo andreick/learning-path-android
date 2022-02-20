@@ -1,0 +1,9 @@
+[submodule "Demos/SQLiteContactList"]
+	path = Demos/SQLiteContactList
+	url = https://github.com/Andreick/SQLiteContactList
+[submodule "Apps/TodoList"]
+	path = Apps/TodoList
+	url = https://github.com/Andreick/todo-list
+[submodule "Apps/CoinConverter"]
+	path = Apps/CoinConverter
+	url = https://github.com/Andreick/coinconverter
