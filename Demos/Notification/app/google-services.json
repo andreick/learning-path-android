@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "931732963917",
+    "project_id": "notification-a8e2a",
+    "storage_bucket": "notification-a8e2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931732963917:android:839261049177b715181204",
+        "android_client_info": {
+          "package_name": "com.andreick.notification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931732963917-1m1rk8m8ec9fsgsctcajqdn5sk3ltdi3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOm4DhC-PJpUSAhOSA6a542R5ErFmCVFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931732963917-1m1rk8m8ec9fsgsctcajqdn5sk3ltdi3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

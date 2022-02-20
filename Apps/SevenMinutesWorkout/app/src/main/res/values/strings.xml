@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SevenMinutesWorkout</string>
+    <string name="start_image">Start image</string>
+
+    <string name="rest_message">GET READY</string>
+    <string name="weight_kg">WEIGHT (kg)</string>
+    <string name="weight_pounds">WEIGHT (pounds)</string>
+    <string name="height_cm">HEIGHT (cm)</string>
+    <string name="feet">Feet</string>
+    <string name="inch">Inch</string>
+</resources>

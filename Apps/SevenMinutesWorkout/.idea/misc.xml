@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/circular_progress_bar.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/circular_progress_bar_gray.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/drawable_units_tab_selector.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/drawable_units_tab_text_color_selector.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/ic_action_done_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/ic_calendar_24.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/ic_done_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/ic_outline_done_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/item_circular_color_accent_bg.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/item_circular_color_accent_border.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/item_circular_color_gray_bg.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/item_circular_thin_color_accent_border.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/item_color_accent_border_ripple_bg.xml" value="0.3828125" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/drawable/radio_group_tab_bg.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/layout/activity_bad_bmi.xml" value="0.33" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/layout/activity_bmi.xml" value="0.33" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/layout/activity_exercise.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/layout/activity_finish.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/layout/activity_history.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/layout/dialog_custom_back_confirmation.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/layout/item_exercise_status.xml" value="0.3401268115942029" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/SevenMinutesWorkout/app/src/main/res/layout/item_history_row.xml" value="0.18697916666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

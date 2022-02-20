@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_exercise_item"
+    android:layout_width="25dp"
+    android:layout_height="25dp"
+    android:layout_margin="1dp"
+    android:background="@drawable/item_circular_color_gray_bg"
+    android:gravity="center"
+    android:padding="3dp"
+    android:textColor="@color/color_primary_dark"
+    android:textStyle="bold"
+    tools:text="1" />
