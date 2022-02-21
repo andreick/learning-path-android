@@ -16,8 +16,8 @@ import com.andreick.sevenminutesworkout.databinding.DialogCustomBackConfirmation
 import java.util.*
 import kotlin.collections.ArrayList
 
-const val REST_COUNTDOWN = 1
-const val EXERCISE_COUNTDOWN = 1
+const val REST_COUNTDOWN = 10
+const val EXERCISE_COUNTDOWN = 20
 
 class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
