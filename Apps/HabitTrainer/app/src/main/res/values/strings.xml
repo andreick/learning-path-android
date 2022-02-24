@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Habit Trainer</string>
+    <string name="description_habit_icon">Habit icon</string>
+    <string name="begin_new_habit">Begin new habit…</string>
+    <string name="hint_habit_title">Eat an apple</string>
+    <string name="hint_habit_description">Apple a day keep the doctor away</string>
+    <string name="save">Save</string>
+    <string name="choose_image">Choose Image</string>
+</resources>
