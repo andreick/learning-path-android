@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Clean Architecture</string>
+    <string name="description_fab_add_note">Add note</string>
+    <string name="hint_content">Content</string>
+    <string name="hint_title">Title</string>
+    <string name="description_fab_check">Save note</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="last_updated">Last updated</string>
+    <string name="last_updated_date">Last updated %1$s</string>
+    <string name="word_count">Words: %1$d</string>
+    <string name="delete_note">Delete note</string>
+</resources>
