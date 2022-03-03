@@ -18,5 +18,9 @@
         android:id="@+id/animalDetailFragment"
         android:name="com.example.animals.view.AnimalDetailFragment"
         android:label="fragment_animal_detail"
-        tools:layout="@layout/fragment_animal_detail" />
+        tools:layout="@layout/fragment_animal_detail" >
+        <argument
+            android:name="animal"
+            app:argType="com.example.animals.model.Animal" />
+    </fragment>
 </navigation>

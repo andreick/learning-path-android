@@ -5,7 +5,18 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Text">
+    <style name="Detail">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AnimalImage">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="TitleAnimalName" parent="Title">
+        <item name="android:gravity">center</item>
+        <item name="android:padding">4dp</item>
     </style>
 </resources>

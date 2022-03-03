@@ -2,6 +2,8 @@ package com.example.animals.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.ListFragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animals.databinding.ItemAnimalBinding
 import com.example.animals.model.Animal
@@ -34,6 +36,10 @@ class AnimalsAdapter(
             with(binding) {
                 tvAnimalName.text = animal.name
                 ivAnimal.loadImage(animal.imageUrl, itemView.context.getProgressDrawable())
+                clMain.setOnClickListener {
+                    val action = AnimalListFragmentDirections.actionShowDetail(animal)
+                    itemView.findNavController().navigate(action)
+                }
             }
         }
     }

@@ -2,8 +2,61 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.AnimalDetailFragment">
 
+    <ImageView
+        android:id="@+id/iv_detail_animal"
+        style="@style/AnimalImage"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/tv_detail_animal_name"
+        style="@style/TitleAnimalName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_detail_animal"
+        tools:text="Animal name" />
+
+    <TextView
+        android:id="@+id/tv_detail_animal_location"
+        style="@style/Detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_detail_animal_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_animal_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_animal_name"
+        tools:text="Location" />
+
+    <TextView
+        android:id="@+id/tv_detail_animal_life_span"
+        style="@style/Detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_detail_animal_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_animal_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_animal_location"
+        tools:text="Life span" />
+
+    <TextView
+        android:id="@+id/tv_detail_animal_diet"
+        style="@style/Detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_detail_animal_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_animal_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_animal_life_span"
+        tools:text="Diet" />
 </androidx.constraintlayout.widget.ConstraintLayout>

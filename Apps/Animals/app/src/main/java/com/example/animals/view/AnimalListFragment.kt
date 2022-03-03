@@ -33,16 +33,13 @@ class AnimalListFragment : Fragment() {
         observeViewModel()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         viewModel.refresh()
     }
 
     private fun setRecyclerView() {
-        with(binding.rvAnimals) {
-            layoutManager = GridLayoutManager(context, 2)
-            adapter = animalsAdapter
-        }
+        binding.rvAnimals.adapter = animalsAdapter
     }
 
     private fun setRefreshLayout() {
