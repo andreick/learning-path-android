@@ -17,7 +17,10 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class AnimalsViewModel(application: Application) : AndroidViewModel(application) {
+class AnimalsViewModel(
+    application: Application,
+    test: Boolean = false
+) : AndroidViewModel(application) {
 
     val animals by lazy { MutableLiveData<List<Animal>>() }
     val loadError by lazy { MutableLiveData<Boolean>() }
@@ -34,10 +37,12 @@ class AnimalsViewModel(application: Application) : AndroidViewModel(application)
     lateinit var prefs: SharedPreferencesHelper
 
     init {
-        DaggerViewModelComponent.builder()
-            .appModule(AppModule(getApplication()))
-            .build()
-            .inject(this)
+        if (!test) {
+            DaggerViewModelComponent.builder()
+                .appModule(AppModule(getApplication()))
+                .build()
+                .inject(this)
+        }
     }
 
     fun refresh() {

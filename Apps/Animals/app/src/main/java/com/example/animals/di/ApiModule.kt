@@ -9,11 +9,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApiModule {
+open class ApiModule {
 
     @Provides
     @Singleton
-    fun provideAnimalApi(): AnimalApi = Retrofit.Builder()
+    open fun provideAnimalApi(): AnimalApi = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
