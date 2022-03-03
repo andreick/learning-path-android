@@ -13,14 +13,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.animals.databinding.FragmentAnimalDetailBinding
-import com.example.animals.model.Animal
-import com.example.animals.util.getProgressDrawable
-import com.example.animals.util.loadImage
 
 class AnimalDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentAnimalDetailBinding
-    private lateinit var animal: Animal
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,20 +29,11 @@ class AnimalDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-            animal = AnimalDetailFragmentArgs.fromBundle(it).animal
-        }
-        if (!::animal.isInitialized) return
-        setAnimalDetails()
-        animal.imageUrl?.let { setBackgroundColor(it) }
-    }
-
-    private fun setAnimalDetails() {
-        with(binding) {
-            ivDetailAnimal.loadImage(animal.imageUrl, context?.getProgressDrawable())
-            tvDetailAnimalName.text = animal.name
-            tvDetailAnimalLocation.text = animal.location
-            tvDetailAnimalLifeSpan.text = animal.lifeSpan
-            tvDetailAnimalDiet.text = animal.diet
+            with(binding) {
+                animal = AnimalDetailFragmentArgs.fromBundle(it).animal.also { animal ->
+                    animal.imageUrl?.let { setBackgroundColor(it) }
+                }
+            }
         }
     }
 

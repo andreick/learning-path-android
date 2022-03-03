@@ -2,13 +2,10 @@ package com.example.animals.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.ListFragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animals.databinding.ItemAnimalBinding
 import com.example.animals.model.Animal
-import com.example.animals.util.getProgressDrawable
-import com.example.animals.util.loadImage
 
 class AnimalsAdapter(
     private val animalList: ArrayList<Animal> = arrayListOf()
@@ -31,16 +28,17 @@ class AnimalsAdapter(
         notifyDataSetChanged()
     }
 
-    class ViewHolder(private val binding: ItemAnimalBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemAnimalBinding) : RecyclerView.ViewHolder(binding.root),
+        AnimalClickListener {
+
         fun bind(animal: Animal) {
-            with(binding) {
-                tvAnimalName.text = animal.name
-                ivAnimal.loadImage(animal.imageUrl, itemView.context.getProgressDrawable())
-                clMain.setOnClickListener {
-                    val action = AnimalListFragmentDirections.actionShowDetail(animal)
-                    itemView.findNavController().navigate(action)
-                }
-            }
+            binding.animal = animal
+            binding.listener = this
+        }
+
+        override fun onClick(animal: Animal) {
+            val action = AnimalListFragmentDirections.actionShowDetail(animal)
+            itemView.findNavController().navigate(action)
         }
     }
 }
