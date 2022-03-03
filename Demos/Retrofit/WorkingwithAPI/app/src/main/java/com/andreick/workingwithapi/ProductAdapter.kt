@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.andreick.workingwithapi.databinding.ItemProductBinding
 import com.andreick.workingwithapi.model.Product
-import com.bumptech.glide.Glide
 
 class ProductAdapter(
     private val context: Context,
