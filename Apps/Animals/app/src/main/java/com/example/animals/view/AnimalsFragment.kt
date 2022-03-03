@@ -6,15 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.animals.databinding.FragmentAnimalListBinding
 import com.example.animals.util.gone
 import com.example.animals.util.visible
-import com.example.animals.viewmodel.AnimalListViewModel
+import com.example.animals.viewmodel.AnimalsViewModel
 
-class AnimalListFragment : Fragment() {
+class AnimalsFragment : Fragment() {
 
-    private val viewModel: AnimalListViewModel by viewModels()
+    private val viewModel: AnimalsViewModel by viewModels()
     private val animalsAdapter = AnimalsAdapter()
     private lateinit var binding: FragmentAnimalListBinding
 

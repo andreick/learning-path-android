@@ -37,7 +37,7 @@ class AnimalsAdapter(
         }
 
         override fun onClick(animal: Animal) {
-            val action = AnimalListFragmentDirections.actionShowDetail(animal)
+            val action = AnimalsFragmentDirections.actionShowDetail(animal)
             itemView.findNavController().navigate(action)
         }
     }

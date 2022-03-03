@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/animalListFragment"
-        android:name="com.example.animals.view.AnimalListFragment"
+        android:name="com.example.animals.view.AnimalsFragment"
         android:label="fragment_animal_list"
         tools:layout="@layout/fragment_animal_list" >
         <action

@@ -3,7 +3,11 @@ package com.example.animals.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.animals.api.AnimalApiService
+import com.example.animals.api.AnimalApi
+import com.example.animals.di.AppModule
+import com.example.animals.di.DaggerViewModelComponent
+import com.example.animals.di.PrefsModule
+import com.example.animals.di.TypeOfContext
 import com.example.animals.model.Animal
 import com.example.animals.model.ApiKey
 import com.example.animals.util.SharedPreferencesHelper
@@ -11,17 +15,30 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class AnimalListViewModel(application: Application) : AndroidViewModel(application) {
+class AnimalsViewModel(application: Application) : AndroidViewModel(application) {
 
     val animals by lazy { MutableLiveData<List<Animal>>() }
     val loadError by lazy { MutableLiveData<Boolean>() }
     val loading by lazy { MutableLiveData<Boolean>() }
 
     private val disposable = CompositeDisposable()
-    private val animalApi = AnimalApiService().animalApi
-    private val prefs = SharedPreferencesHelper(getApplication())
     private var invalidApiKey = false
+
+    @Inject
+    lateinit var animalApi: AnimalApi
+
+    @Inject
+    @field:TypeOfContext(PrefsModule.CONTEXT_APP)
+    lateinit var prefs: SharedPreferencesHelper
+
+    init {
+        DaggerViewModelComponent.builder()
+            .appModule(AppModule(getApplication()))
+            .build()
+            .inject(this)
+    }
 
     fun refresh() {
         loading.value = true
