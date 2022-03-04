@@ -18,9 +18,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class AnimalsViewModel(
-    application: Application,
-    test: Boolean = false
+    application: Application
 ) : AndroidViewModel(application) {
+
+    constructor(application: Application, isTest: Boolean) : this(application) {
+        this.isTest = isTest
+    }
 
     val animals by lazy { MutableLiveData<List<Animal>>() }
     val loadError by lazy { MutableLiveData<Boolean>() }
@@ -28,6 +31,7 @@ class AnimalsViewModel(
 
     private val disposable = CompositeDisposable()
     private var invalidApiKey = false
+    private var isTest = false
 
     @Inject
     lateinit var animalApi: AnimalApi
@@ -37,7 +41,7 @@ class AnimalsViewModel(
     lateinit var prefs: SharedPreferencesHelper
 
     init {
-        if (!test) {
+        if (!isTest) {
             DaggerViewModelComponent.builder()
                 .appModule(AppModule(getApplication()))
                 .build()
