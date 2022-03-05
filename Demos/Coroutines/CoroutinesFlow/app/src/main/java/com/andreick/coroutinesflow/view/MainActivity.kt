@@ -1,6 +1,7 @@
 package com.andreick.coroutinesflow.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         viewModel.newsArticles.observe(this) { article ->
+            binding.loadingView.visibility = View.GONE
+            binding.newsList.visibility = View.VISIBLE
+            newsListAdapter.onAddNewsItem(article)
+            binding.newsList.scrollToPosition(0)
         }
     }
 }

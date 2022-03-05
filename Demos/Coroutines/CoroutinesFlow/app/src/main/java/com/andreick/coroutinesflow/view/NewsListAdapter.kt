@@ -7,7 +7,7 @@ import com.andreick.coroutinesflow.databinding.ItemNewsArticleBinding
 import com.andreick.coroutinesflow.loadImage
 import com.andreick.coroutinesflow.model.NewsArticle
 
-class NewsListAdapter: RecyclerView.Adapter<NewsListAdapter.NewsItemViewHolder>() {
+class NewsListAdapter : RecyclerView.Adapter<NewsListAdapter.NewsItemViewHolder>() {
 
     private val newsItems = arrayListOf<NewsArticle>()
 
@@ -27,7 +27,7 @@ class NewsListAdapter: RecyclerView.Adapter<NewsListAdapter.NewsItemViewHolder>(
         holder.bind(newsItems[position])
     }
 
-    class NewsItemViewHolder(private val binding: ItemNewsArticleBinding): RecyclerView.ViewHolder(binding.root) {
+    class NewsItemViewHolder(private val binding: ItemNewsArticleBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(newsItem: NewsArticle) {
             binding.newsImage.loadImage(newsItem.urlToImage)
