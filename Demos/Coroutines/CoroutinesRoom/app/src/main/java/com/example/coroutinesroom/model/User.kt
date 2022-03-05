@@ -10,5 +10,6 @@ data class User(
     @ColumnInfo(name = "password_hash") val passwordHash: Int,
     val info: String
 ) {
-    @PrimaryKey(autoGenerate = true) val id: Long = 0
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
 }
