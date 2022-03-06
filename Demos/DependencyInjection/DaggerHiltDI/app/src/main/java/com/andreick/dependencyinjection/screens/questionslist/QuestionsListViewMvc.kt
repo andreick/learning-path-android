@@ -1,29 +1,27 @@
 package com.andreick.dependencyinjection.screens.questionslist
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.andreick.dependencyinjection.R
 import com.andreick.dependencyinjection.databinding.LayoutQuestionListItemBinding
 import com.andreick.dependencyinjection.databinding.LayoutQuestionsListBinding
 import com.andreick.dependencyinjection.questions.Question
+import com.andreick.dependencyinjection.screens.common.viewsmvc.BaseViewMvc
 
 class QuestionsListViewMvc(
     layoutInflater: LayoutInflater,
     parent: ViewGroup?
-) {
+) : BaseViewMvc<QuestionsListViewMvc.Listener>() {
+
     interface Listener {
         fun onRefresh()
         fun onQuestionClicked(clickedQuestion: Question)
     }
 
     private val binding = LayoutQuestionsListBinding.inflate(layoutInflater, parent, false)
-    val rootView = binding.root
+    override val rootView = binding.root
 
-    private val listeners = HashSet<Listener>()
     private val questionsAdapter: QuestionsAdapter
 
     init {
@@ -52,14 +50,6 @@ class QuestionsListViewMvc(
 
     fun hideProgressIndication() {
         binding.swipeRefresh.isRefreshing = false
-    }
-
-    fun registerListener(listener: Listener) {
-        listeners.add(listener)
-    }
-
-    fun unregisterListener(listener: Listener) {
-        listeners.remove(listener)
     }
 
     class QuestionsAdapter(
