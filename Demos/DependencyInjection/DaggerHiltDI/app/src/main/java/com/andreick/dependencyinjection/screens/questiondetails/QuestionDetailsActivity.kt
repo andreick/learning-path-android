@@ -13,11 +13,13 @@ class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener 
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-    private lateinit var questionId: String
     private lateinit var viewMvc: QuestionDetailsViewMvc
+
     private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
     private lateinit var dialogsNavigator: DialogsNavigator
     private lateinit var screenNavigator: ScreenNavigator
+
+    private lateinit var questionId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

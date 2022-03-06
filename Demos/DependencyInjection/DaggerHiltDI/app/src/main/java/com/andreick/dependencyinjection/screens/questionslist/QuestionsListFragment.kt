@@ -16,6 +16,7 @@ class QuestionsListFragment : BaseFragment(), QuestionsListViewMvc.Listener {
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     private lateinit var viewMvc: QuestionsListViewMvc
+
     private lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
     private lateinit var dialogsNavigator: DialogsNavigator
     private lateinit var screenNavigator: ScreenNavigator
