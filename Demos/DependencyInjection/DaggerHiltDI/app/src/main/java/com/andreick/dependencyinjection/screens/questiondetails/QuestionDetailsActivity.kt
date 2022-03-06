@@ -28,7 +28,7 @@ class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener 
         questionId = intent.extras!!.getString(EXTRA_QUESTION_ID)!!
 
         fetchQuestionDetailsUseCase = compositionRoot.fetchQuestionDetailsUseCase
-        dialogsNavigator = DialogsNavigator(supportFragmentManager)
+        dialogsNavigator = compositionRoot.dialogsNavigator
         screenNavigator = compositionRoot.screenNavigator
     }
 
