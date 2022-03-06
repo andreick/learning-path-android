@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
 import com.andreick.dependencyinjection.questions.Question
-import com.andreick.dependencyinjection.screens.common.dialogs.ServerErrorDialogFragment
+import com.andreick.dependencyinjection.screens.common.dialogs.DialogsNavigator
 import com.andreick.dependencyinjection.screens.questiondetails.QuestionDetailsActivity
 import kotlinx.coroutines.*
 
@@ -13,6 +13,8 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     private lateinit var viewMvc: QuestionsListViewMvc
+    private lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
+    private lateinit var dialogsNavigator: DialogsNavigator
 
     private var isDataLoaded = false
 
@@ -20,6 +22,9 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
         super.onCreate(savedInstanceState)
         viewMvc = QuestionsListViewMvc(layoutInflater, null)
         setContentView(viewMvc.rootView)
+
+        fetchQuestionsUseCase = FetchQuestionsUseCase()
+        dialogsNavigator = DialogsNavigator(supportFragmentManager)
     }
 
     override fun onStart() {
@@ -48,7 +53,7 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
         coroutineScope.launch {
             viewMvc.showProgressIndication()
             try {
-                when (val result = FetchQuestionsUseCase.fetchLatestQuestions()) {
+                when (val result = fetchQuestionsUseCase.fetchLatestQuestions()) {
                     is FetchQuestionsUseCase.Result.Success -> {
                         viewMvc.bindQuestions(result.questions)
                         isDataLoaded = true
@@ -62,8 +67,6 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
     }
 
     private fun onFetchFailed() {
-        supportFragmentManager.beginTransaction()
-            .add(ServerErrorDialogFragment.newInstance(), null)
-            .commitAllowingStateLoss()
+        dialogsNavigator.showServerErrorDialog()
     }
 }

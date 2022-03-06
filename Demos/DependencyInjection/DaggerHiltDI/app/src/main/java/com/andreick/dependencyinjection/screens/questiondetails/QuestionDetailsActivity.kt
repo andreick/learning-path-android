@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.questions.FetchQuestionDetailsUseCase
-import com.andreick.dependencyinjection.screens.common.dialogs.ServerErrorDialogFragment
+import com.andreick.dependencyinjection.screens.common.dialogs.DialogsNavigator
 import kotlinx.coroutines.*
 
 class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.Listener {
@@ -13,12 +13,17 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     private lateinit var viewMvc: QuestionDetailsViewMvc
+    private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
+    private lateinit var dialogsNavigator: DialogsNavigator
     private lateinit var questionId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewMvc = QuestionDetailsViewMvc(layoutInflater, null)
         setContentView(viewMvc.rootView)
+
+        fetchQuestionDetailsUseCase = FetchQuestionDetailsUseCase()
+        dialogsNavigator = DialogsNavigator(supportFragmentManager)
 
         // retrieve question ID passed from outside
         questionId = intent.extras!!.getString(EXTRA_QUESTION_ID)!!
@@ -40,7 +45,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
         coroutineScope.launch {
             viewMvc.showProgressIndication()
             try {
-                when (val result = FetchQuestionDetailsUseCase.fetchQuestion(questionId)) {
+                when (val result = fetchQuestionDetailsUseCase.fetchQuestion(questionId)) {
                     is FetchQuestionDetailsUseCase.Result.Success -> {
                         viewMvc.bindQuestionsBody(result.questionBody)
                     }
@@ -53,9 +58,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
     }
 
     private fun onFetchFailed() {
-        supportFragmentManager.beginTransaction()
-            .add(ServerErrorDialogFragment.newInstance(), null)
-            .commitAllowingStateLoss()
+        dialogsNavigator.showServerErrorDialog()
     }
 
     override fun onBackClicked() {
