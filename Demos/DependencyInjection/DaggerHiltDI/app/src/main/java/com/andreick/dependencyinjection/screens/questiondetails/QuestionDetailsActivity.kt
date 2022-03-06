@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.questions.FetchQuestionDetailsUseCase
+import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import com.andreick.dependencyinjection.screens.common.dialogs.DialogsNavigator
 import kotlinx.coroutines.*
 
@@ -12,21 +13,23 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
+    private lateinit var questionId: String
     private lateinit var viewMvc: QuestionDetailsViewMvc
     private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
     private lateinit var dialogsNavigator: DialogsNavigator
-    private lateinit var questionId: String
+    private lateinit var screenNavigator: ScreenNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewMvc = QuestionDetailsViewMvc(layoutInflater, null)
         setContentView(viewMvc.rootView)
 
-        fetchQuestionDetailsUseCase = FetchQuestionDetailsUseCase()
-        dialogsNavigator = DialogsNavigator(supportFragmentManager)
-
         // retrieve question ID passed from outside
         questionId = intent.extras!!.getString(EXTRA_QUESTION_ID)!!
+
+        fetchQuestionDetailsUseCase = FetchQuestionDetailsUseCase()
+        dialogsNavigator = DialogsNavigator(supportFragmentManager)
+        screenNavigator = ScreenNavigator(this)
     }
 
     override fun onStart() {
@@ -62,7 +65,7 @@ class QuestionDetailsActivity : AppCompatActivity(), QuestionDetailsViewMvc.List
     }
 
     override fun onBackClicked() {
-        onBackPressed()
+        screenNavigator.navigateBack()
     }
 
     companion object {

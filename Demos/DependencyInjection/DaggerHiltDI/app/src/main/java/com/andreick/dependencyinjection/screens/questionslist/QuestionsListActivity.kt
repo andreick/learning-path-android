@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
 import com.andreick.dependencyinjection.questions.Question
+import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import com.andreick.dependencyinjection.screens.common.dialogs.DialogsNavigator
-import com.andreick.dependencyinjection.screens.questiondetails.QuestionDetailsActivity
 import kotlinx.coroutines.*
 
 class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener {
@@ -15,6 +15,7 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
     private lateinit var viewMvc: QuestionsListViewMvc
     private lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
     private lateinit var dialogsNavigator: DialogsNavigator
+    private lateinit var screenNavigator: ScreenNavigator
 
     private var isDataLoaded = false
 
@@ -25,6 +26,7 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
 
         fetchQuestionsUseCase = FetchQuestionsUseCase()
         dialogsNavigator = DialogsNavigator(supportFragmentManager)
+        screenNavigator = ScreenNavigator(this)
     }
 
     override fun onStart() {
@@ -46,7 +48,7 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
     }
 
     override fun onQuestionClicked(clickedQuestion: Question) {
-        QuestionDetailsActivity.start(this, clickedQuestion.id)
+        screenNavigator.toQuestionDetails(clickedQuestion.id)
     }
 
     private fun fetchQuestions() {
