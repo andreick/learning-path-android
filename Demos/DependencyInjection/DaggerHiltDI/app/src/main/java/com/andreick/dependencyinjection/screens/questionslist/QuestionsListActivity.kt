@@ -15,11 +15,10 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
+    private lateinit var viewMvc: QuestionsListViewMvc
     private lateinit var stackoverflowApi: StackoverflowApi
 
     private var isDataLoaded = false
-
-    private lateinit var viewMvc: QuestionsListViewMvc
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

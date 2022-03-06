@@ -20,9 +20,9 @@ class QuestionsListViewMvc(
     }
 
     private val binding = LayoutQuestionsListBinding.inflate(layoutInflater, parent, false)
-    override val rootView = binding.root
-
     private val questionsAdapter: QuestionsAdapter
+
+    override val rootView = binding.root
 
     init {
         // init pull-down-to-refresh
