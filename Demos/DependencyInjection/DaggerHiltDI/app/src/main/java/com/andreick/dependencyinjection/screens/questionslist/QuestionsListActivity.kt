@@ -53,9 +53,7 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
                         viewMvc.bindQuestions(result.questions)
                         isDataLoaded = true
                     }
-                    is FetchQuestionsUseCase.Result.Failure -> {
-                        onFetchFailed()
-                    }
+                    FetchQuestionsUseCase.Result.Failure -> onFetchFailed()
                 }
             } finally {
                 viewMvc.hideProgressIndication()
