@@ -2,6 +2,7 @@ package com.andreick.dependencyinjection.screens.questionslist
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.andreick.dependencyinjection.MyApplication
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
 import com.andreick.dependencyinjection.questions.Question
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
@@ -24,7 +25,7 @@ class QuestionsListActivity : AppCompatActivity(), QuestionsListViewMvc.Listener
         viewMvc = QuestionsListViewMvc(layoutInflater, null)
         setContentView(viewMvc.rootView)
 
-        fetchQuestionsUseCase = FetchQuestionsUseCase()
+        fetchQuestionsUseCase = FetchQuestionsUseCase((application as MyApplication).retrofit)
         dialogsNavigator = DialogsNavigator(supportFragmentManager)
         screenNavigator = ScreenNavigator(this)
     }
