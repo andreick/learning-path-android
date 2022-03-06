@@ -18,7 +18,7 @@ class QuestionDetailsViewMvc(
 
     private val binding = LayoutQuestionDetailsBinding.inflate(layoutInflater, parent, false)
 
-    override val rootView = binding.root
+    override val rootView get() = binding.root
 
     init {
         // init toolbar

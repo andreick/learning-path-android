@@ -29,7 +29,7 @@ class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener 
 
         fetchQuestionDetailsUseCase = compositionRoot.fetchQuestionDetailsUseCase
         dialogsNavigator = DialogsNavigator(supportFragmentManager)
-        screenNavigator = ScreenNavigator(this)
+        screenNavigator = compositionRoot.screenNavigator
     }
 
     override fun onStart() {
