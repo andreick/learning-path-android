@@ -33,7 +33,7 @@ class QuestionsListFragment : BaseFragment(), QuestionsListViewMvc.Listener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        viewMvc = QuestionsListViewMvc(layoutInflater, container)
+        viewMvc = compositionRoot.viewMvcFactory.newQuestionsListViewMvc(container)
         return viewMvc.rootView
     }
 

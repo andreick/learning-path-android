@@ -1,11 +1,11 @@
 package com.andreick.dependencyinjection.common.composition
 
-import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.questions.FetchQuestionDetailsUseCase
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import com.andreick.dependencyinjection.screens.common.dialogs.DialogsNavigator
+import com.andreick.dependencyinjection.screens.common.viewsmvc.ViewMvcFactory
 
 class ActivityCompositionRoot(
     private val activity: AppCompatActivity,
@@ -13,7 +13,8 @@ class ActivityCompositionRoot(
 ) {
     val screenNavigator by lazy { ScreenNavigator(activity) }
 
-    private val layoutInflater get() = LayoutInflater.from(activity)
+    private val layoutInflater get() = activity.layoutInflater
+    val viewMvcFactory get() = ViewMvcFactory(layoutInflater)
 
     private val fragmentManager get() = activity.supportFragmentManager
     val dialogsNavigator get() = DialogsNavigator(fragmentManager)
