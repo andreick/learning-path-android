@@ -1,14 +1,12 @@
 package com.andreick.dependencyinjection.common.dependencyinjection.app
 
-import android.app.Application
-import com.andreick.dependencyinjection.networking.StackoverflowApi
+import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityComponent
+import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityModule
 import dagger.Component
 
 @AppScope
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
-    fun application(): Application
-
-    fun stackoverflowApi(): StackoverflowApi
+    fun newActivityComponent(activityModule: ActivityModule): ActivityComponent
 }
