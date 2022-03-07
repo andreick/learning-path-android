@@ -2,7 +2,6 @@ package com.andreick.dependencyinjection.common.dependencyinjection.presentation
 
 import android.view.LayoutInflater
 import androidx.fragment.app.FragmentManager
-import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityComponent
 import com.andreick.dependencyinjection.networking.StackoverflowApi
 import com.andreick.dependencyinjection.questions.FetchQuestionDetailsUseCase
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
@@ -12,19 +11,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class PresentationModule(private val activityComponent: ActivityComponent) {
-
-    @Provides
-    fun layoutInflater() = activityComponent.layoutInflater()
-
-    @Provides
-    fun fragmentManager() = activityComponent.fragmentManager()
-
-    @Provides
-    fun stackoverflowApi() = activityComponent.stackoverflowApi()
-
-    @Provides
-    fun screenNavigator() = activityComponent.screenNavigator()
+class PresentationModule {
 
     @Provides
     fun viewMvcFactory(layoutInflater: LayoutInflater) = ViewMvcFactory(layoutInflater)
