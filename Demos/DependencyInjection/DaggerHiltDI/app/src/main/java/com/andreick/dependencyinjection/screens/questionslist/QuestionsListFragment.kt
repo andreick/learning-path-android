@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.andreick.dependencyinjection.common.dependencyinjection.Service
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
 import com.andreick.dependencyinjection.questions.Question
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
@@ -12,17 +11,18 @@ import com.andreick.dependencyinjection.screens.common.dialogs.DialogsNavigator
 import com.andreick.dependencyinjection.screens.common.fragments.BaseFragment
 import com.andreick.dependencyinjection.screens.common.viewsmvc.ViewMvcFactory
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
 class QuestionsListFragment : BaseFragment(), QuestionsListViewMvc.Listener {
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-    private lateinit var viewMvc: QuestionsListViewMvc
+    @Inject lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
+    @Inject lateinit var dialogsNavigator: DialogsNavigator
+    @Inject lateinit var screenNavigator: ScreenNavigator
+    @Inject lateinit var viewMvcFactory: ViewMvcFactory
 
-    @field:Service private lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
-    @field:Service private lateinit var dialogsNavigator: DialogsNavigator
-    @field:Service private lateinit var screenNavigator: ScreenNavigator
-    @field:Service private lateinit var viewMvcFactory: ViewMvcFactory
+    private lateinit var viewMvc: QuestionsListViewMvc
 
     private var isDataLoaded = false
 

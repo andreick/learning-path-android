@@ -3,24 +3,24 @@ package com.andreick.dependencyinjection.screens.questiondetails
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.andreick.dependencyinjection.common.dependencyinjection.Service
 import com.andreick.dependencyinjection.questions.FetchQuestionDetailsUseCase
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import com.andreick.dependencyinjection.screens.common.activities.BaseActivity
 import com.andreick.dependencyinjection.screens.common.dialogs.DialogsNavigator
 import com.andreick.dependencyinjection.screens.common.viewsmvc.ViewMvcFactory
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
 class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener {
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-    private lateinit var viewMvc: QuestionDetailsViewMvc
+    @Inject lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
+    @Inject lateinit var dialogsNavigator: DialogsNavigator
+    @Inject lateinit var screenNavigator: ScreenNavigator
+    @Inject lateinit var viewMvcFactory: ViewMvcFactory
 
-    @field:Service private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
-    @field:Service private lateinit var dialogsNavigator: DialogsNavigator
-    @field:Service private lateinit var screenNavigator: ScreenNavigator
-    @field:Service private lateinit var viewMvcFactory: ViewMvcFactory
+    private lateinit var viewMvc: QuestionDetailsViewMvc
 
     private lateinit var questionId: String
 
