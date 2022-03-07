@@ -3,6 +3,7 @@ package com.andreick.dependencyinjection.screens.questiondetails
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.andreick.dependencyinjection.common.dependencyinjection.Service
 import com.andreick.dependencyinjection.questions.FetchQuestionDetailsUseCase
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import com.andreick.dependencyinjection.screens.common.activities.BaseActivity
@@ -16,10 +17,10 @@ class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener 
 
     private lateinit var viewMvc: QuestionDetailsViewMvc
 
-    lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
-    lateinit var dialogsNavigator: DialogsNavigator
-    lateinit var screenNavigator: ScreenNavigator
-    lateinit var viewMvcFactory: ViewMvcFactory
+    @field:Service private lateinit var fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
+    @field:Service private lateinit var dialogsNavigator: DialogsNavigator
+    @field:Service private lateinit var screenNavigator: ScreenNavigator
+    @field:Service private lateinit var viewMvcFactory: ViewMvcFactory
 
     private lateinit var questionId: String
 

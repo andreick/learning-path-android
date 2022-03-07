@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.andreick.dependencyinjection.common.dependencyinjection.Service
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
 import com.andreick.dependencyinjection.questions.Question
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
@@ -18,10 +19,10 @@ class QuestionsListFragment : BaseFragment(), QuestionsListViewMvc.Listener {
 
     private lateinit var viewMvc: QuestionsListViewMvc
 
-    lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
-    lateinit var dialogsNavigator: DialogsNavigator
-    lateinit var screenNavigator: ScreenNavigator
-    lateinit var viewMvcFactory: ViewMvcFactory
+    @field:Service private lateinit var fetchQuestionsUseCase: FetchQuestionsUseCase
+    @field:Service private lateinit var dialogsNavigator: DialogsNavigator
+    @field:Service private lateinit var screenNavigator: ScreenNavigator
+    @field:Service private lateinit var viewMvcFactory: ViewMvcFactory
 
     private var isDataLoaded = false
 
