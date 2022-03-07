@@ -33,3 +33,5 @@ Class from [Dependency Injection in Android with Dagger 2 and Hilt](https://www.
 - Automatic Service Discovery (@Inject annotated constructors)
   - Dagger can automatically discover services having a public constructor annotated with @Inject annotation
   - Automatically discovered services can be scoped
+- Provider Methods in Modules vs Automatic Discovery
+  - _Recomendation_: Keep scoped services explicitly inside modules in one single place
