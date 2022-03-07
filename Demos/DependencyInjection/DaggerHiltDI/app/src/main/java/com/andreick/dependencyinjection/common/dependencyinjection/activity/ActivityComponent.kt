@@ -6,6 +6,7 @@ import com.andreick.dependencyinjection.networking.StackoverflowApi
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import dagger.Component
 
+@ActivityScope
 @Component(modules = [ActivityModule::class])
 interface ActivityComponent {
 

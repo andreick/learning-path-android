@@ -5,6 +5,8 @@ import com.andreick.dependencyinjection.MyApplication
 import com.andreick.dependencyinjection.common.dependencyinjection.*
 import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityComponent
 import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityModule
+import com.andreick.dependencyinjection.common.dependencyinjection.activity.DaggerActivityComponent
+import com.andreick.dependencyinjection.common.dependencyinjection.presentation.DaggerPresentationComponent
 import com.andreick.dependencyinjection.common.dependencyinjection.presentation.PresentationModule
 
 open class BaseActivity : AppCompatActivity() {
