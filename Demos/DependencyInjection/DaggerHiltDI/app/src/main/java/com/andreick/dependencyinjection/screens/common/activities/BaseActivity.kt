@@ -5,6 +5,7 @@ import com.andreick.dependencyinjection.MyApplication
 import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityComponent
 import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityModule
 import com.andreick.dependencyinjection.common.dependencyinjection.presentation.PresentationModule
+import com.andreick.dependencyinjection.common.dependencyinjection.presentation.UseCasesModule
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -15,7 +16,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private val presentationComponent by lazy {
-        activityComponent.newPresentationComponent(PresentationModule())
+        activityComponent.newPresentationComponent(PresentationModule(), UseCasesModule())
     }
 
     protected val injector get() = presentationComponent
