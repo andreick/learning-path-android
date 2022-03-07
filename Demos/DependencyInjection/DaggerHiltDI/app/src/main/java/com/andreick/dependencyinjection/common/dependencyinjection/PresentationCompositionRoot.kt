@@ -1,4 +1,4 @@
-package com.andreick.dependencyinjection.common.composition
+package com.andreick.dependencyinjection.common.dependencyinjection
 
 import com.andreick.dependencyinjection.questions.FetchQuestionDetailsUseCase
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase

@@ -2,8 +2,9 @@ package com.andreick.dependencyinjection.screens.common.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.MyApplication
-import com.andreick.dependencyinjection.common.composition.ActivityCompositionRoot
-import com.andreick.dependencyinjection.common.composition.PresentationCompositionRoot
+import com.andreick.dependencyinjection.common.dependencyinjection.ActivityCompositionRoot
+import com.andreick.dependencyinjection.common.dependencyinjection.Injector
+import com.andreick.dependencyinjection.common.dependencyinjection.PresentationCompositionRoot
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -13,5 +14,7 @@ open class BaseActivity : AppCompatActivity() {
         ActivityCompositionRoot(this, appCompositionRoot)
     }
 
-    protected val compositionRoot by lazy { PresentationCompositionRoot(activityCompositionRoot) }
+    private val compositionRoot by lazy { PresentationCompositionRoot(activityCompositionRoot) }
+
+    protected val injector get() = Injector(compositionRoot)
 }

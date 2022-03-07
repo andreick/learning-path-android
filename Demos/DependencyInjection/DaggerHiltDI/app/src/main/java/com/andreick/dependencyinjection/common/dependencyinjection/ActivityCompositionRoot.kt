@@ -1,4 +1,4 @@
-package com.andreick.dependencyinjection.common.composition
+package com.andreick.dependencyinjection.common.dependencyinjection
 
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator

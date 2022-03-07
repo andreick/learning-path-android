@@ -1,4 +1,4 @@
-package com.andreick.dependencyinjection.common.composition
+package com.andreick.dependencyinjection.common.dependencyinjection
 
 import androidx.annotation.UiThread
 import com.andreick.dependencyinjection.Constants
