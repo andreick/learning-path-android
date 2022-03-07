@@ -1,7 +1,6 @@
 package com.andreick.dependencyinjection.common.dependencyinjection.activity
 
 import androidx.appcompat.app.AppCompatActivity
-import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import dagger.Module
 import dagger.Provides
 
@@ -9,12 +8,11 @@ import dagger.Provides
 class ActivityModule(private val activity: AppCompatActivity) {
 
     @Provides
-    @ActivityScope
-    fun screenNavigator() = ScreenNavigator(activity)
+    fun activity() = activity
 
     @Provides
-    fun layoutInflater() = activity.layoutInflater
+    fun layoutInflater(activity: AppCompatActivity) = activity.layoutInflater
 
     @Provides
-    fun fragmentManager() = activity.supportFragmentManager
+    fun fragmentManager(activity: AppCompatActivity) = activity.supportFragmentManager
 }

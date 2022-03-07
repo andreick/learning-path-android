@@ -4,8 +4,9 @@ import com.andreick.dependencyinjection.networking.StackoverflowApi
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class FetchQuestionDetailsUseCase(private val stackoverflowApi: StackoverflowApi) {
+class FetchQuestionDetailsUseCase @Inject constructor(private val stackoverflowApi: StackoverflowApi) {
 
     suspend fun fetchQuestion(questionId: String): Result {
         return withContext(Dispatchers.IO) {
