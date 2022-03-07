@@ -1,14 +1,15 @@
 package com.andreick.dependencyinjection
 
 import android.app.Application
-import com.andreick.dependencyinjection.common.dependencyinjection.AppCompositionRoot
+import com.andreick.dependencyinjection.common.dependencyinjection.app.AppComponent
+import com.andreick.dependencyinjection.common.dependencyinjection.app.AppModule
+import com.andreick.dependencyinjection.common.dependencyinjection.DaggerAppComponent
 
 class MyApplication : Application() {
 
-    lateinit var appCompositionRoot: AppCompositionRoot
-
-    override fun onCreate() {
-        super.onCreate()
-        appCompositionRoot = AppCompositionRoot()
+    val appComponent: AppComponent by lazy {
+        DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
     }
 }

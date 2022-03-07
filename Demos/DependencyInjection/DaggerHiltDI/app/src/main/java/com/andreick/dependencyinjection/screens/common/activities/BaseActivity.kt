@@ -2,19 +2,26 @@ package com.andreick.dependencyinjection.screens.common.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.MyApplication
-import com.andreick.dependencyinjection.common.dependencyinjection.ActivityCompositionRoot
-import com.andreick.dependencyinjection.common.dependencyinjection.Injector
-import com.andreick.dependencyinjection.common.dependencyinjection.PresentationCompositionRoot
+import com.andreick.dependencyinjection.common.dependencyinjection.*
+import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityComponent
+import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityModule
+import com.andreick.dependencyinjection.common.dependencyinjection.presentation.PresentationModule
 
 open class BaseActivity : AppCompatActivity() {
 
-    private val appCompositionRoot get() = (application as MyApplication).appCompositionRoot
+    private val appComponent get()= (application as MyApplication).appComponent
 
-    val activityCompositionRoot by lazy {
-        ActivityCompositionRoot(this, appCompositionRoot)
+    val activityComponent: ActivityComponent by lazy {
+        DaggerActivityComponent.builder()
+            .activityModule(ActivityModule(this, appComponent))
+            .build()
     }
 
-    private val compositionRoot by lazy { PresentationCompositionRoot(activityCompositionRoot) }
+    private val presentationComponent by lazy {
+        DaggerPresentationComponent.builder()
+            .presentationModule(PresentationModule(activityComponent))
+            .build()
+    }
 
-    protected val injector get() = Injector(compositionRoot)
+    protected val injector get() = Injector(presentationComponent)
 }

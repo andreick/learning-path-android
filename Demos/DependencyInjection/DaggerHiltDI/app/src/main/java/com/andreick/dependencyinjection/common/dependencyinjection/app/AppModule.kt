@@ -1,13 +1,15 @@
-package com.andreick.dependencyinjection.common.dependencyinjection
+package com.andreick.dependencyinjection.common.dependencyinjection.app
 
-import androidx.annotation.UiThread
+import android.app.Application
 import com.andreick.dependencyinjection.Constants
 import com.andreick.dependencyinjection.networking.StackoverflowApi
+import dagger.Module
+import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@UiThread
-class AppCompositionRoot {
+@Module
+class AppModule(val application: Application) {
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
@@ -16,7 +18,13 @@ class AppCompositionRoot {
             .build()
     }
 
-    val stackoverflowApi: StackoverflowApi by lazy {
+    private val stackoverflowApi: StackoverflowApi by lazy {
         retrofit.create(StackoverflowApi::class.java)
     }
+
+    @Provides
+    fun application() = application
+
+    @Provides
+    fun stackoverflowApi() = stackoverflowApi
 }
