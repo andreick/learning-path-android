@@ -13,7 +13,7 @@ class FetchQuestionDetailsUseCase @Inject constructor(private val stackoverflowA
             try {
                 val response = stackoverflowApi.questionDetails(questionId)
                 if (response.isSuccessful && response.body() != null) {
-                    return@withContext Result.Success(response.body()!!.question.body)
+                    return@withContext Result.Success(response.body()!!.question)
                 } else {
                     return@withContext Result.Failure
                 }
@@ -28,7 +28,7 @@ class FetchQuestionDetailsUseCase @Inject constructor(private val stackoverflowA
     }
 
     sealed class Result {
-        data class Success(val questionBody: String) : Result()
+        data class Success(val question: QuestionWithBody) : Result()
         object Failure : Result()
     }
 }

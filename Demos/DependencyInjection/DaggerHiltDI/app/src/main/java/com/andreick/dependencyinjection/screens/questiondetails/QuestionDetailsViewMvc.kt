@@ -5,11 +5,14 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.andreick.dependencyinjection.databinding.LayoutQuestionDetailsBinding
+import com.andreick.dependencyinjection.questions.QuestionWithBody
+import com.andreick.dependencyinjection.screens.common.imageloader.ImageLoader
 import com.andreick.dependencyinjection.screens.common.viewsmvc.BaseViewMvc
 
 class QuestionDetailsViewMvc(
     layoutInflater: LayoutInflater,
-    parent: ViewGroup?
+    parent: ViewGroup?,
+    private val imageLoader: ImageLoader
 ) : BaseViewMvc<QuestionDetailsViewMvc.Listener>() {
 
     interface Listener {
@@ -31,13 +34,15 @@ class QuestionDetailsViewMvc(
         binding.swipeRefresh.isEnabled = false
     }
 
-    fun bindQuestionsBody(body: String) {
+    fun bindQuestionsBody(question: QuestionWithBody) {
         binding.txtQuestionBody.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(body, Html.FROM_HTML_MODE_LEGACY)
+            Html.fromHtml(question.body, Html.FROM_HTML_MODE_LEGACY)
         } else {
             @Suppress("DEPRECATION")
-            Html.fromHtml(body)
+            Html.fromHtml(question.body)
         }
+        imageLoader.loadImage(question.owner.imageUrl, binding.imgUser)
+        binding.txtUsername.text = question.owner.name
     }
 
     fun showProgressIndication() {

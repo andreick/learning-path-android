@@ -54,7 +54,7 @@ class QuestionDetailsActivity : BaseActivity(), QuestionDetailsViewMvc.Listener 
             try {
                 when (val result = fetchQuestionDetailsUseCase.fetchQuestion(questionId)) {
                     is FetchQuestionDetailsUseCase.Result.Success -> {
-                        viewMvc.bindQuestionsBody(result.questionBody)
+                        viewMvc.bindQuestionsBody(result.question)
                     }
                     FetchQuestionDetailsUseCase.Result.Failure -> onFetchFailed()
                 }
