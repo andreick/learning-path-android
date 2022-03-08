@@ -47,3 +47,7 @@ Class from [Dependency Injection in Android with Dagger 2 and Hilt](https://www.
   - Qualifiers are annotation classes annotated with @Qualifier
   - From Dagger's standpoint, qualifiers are part of the type (e.g. @Q1 Service and @Q2 Service are different types)
   - You can use the standard @Named(String) qualifier (not recommended)
+- Providers
+  - Provider<Type> wrappers are "windows" into Dagger's object graph and allow you to retrieve a single type of services
+  - Providers are basically "extensions" of composition roots
+  - You use Providers when you need to perform "late injection" (e.g. Factory)
