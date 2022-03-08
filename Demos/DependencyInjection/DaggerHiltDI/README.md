@@ -34,4 +34,8 @@ Class from [Dependency Injection in Android with Dagger 2 and Hilt](https://www.
   - Dagger can automatically discover services having a public constructor annotated with @Inject annotation
   - Automatically discovered services can be scoped
 - Provider Methods in Modules vs Automatic Discovery
-  - _Recomendation_: Keep scoped services explicitly inside modules in one single place
+  - *Recommendation*: Keep scoped services explicitly inside modules in one single place
+- Static Provider Methods and Component Builders
+  - Dagger generates more performant code for static providers in Modules (use companion object or top-level object in Kotlin)
+  - @Component.Builder (or @Subcomponent.Builder) designates inner builder interface for Component
+  - @BindInstance allows for injection of "bootstrapping dependencies" directly into Component builders
