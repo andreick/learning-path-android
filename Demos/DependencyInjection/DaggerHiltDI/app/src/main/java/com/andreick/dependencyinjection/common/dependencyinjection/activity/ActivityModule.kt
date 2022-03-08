@@ -2,19 +2,23 @@ package com.andreick.dependencyinjection.common.dependencyinjection.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
+import com.andreick.dependencyinjection.screens.common.ScreenNavigatorImplementation
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 
 @Module
-object ActivityModule {
+abstract class ActivityModule {
 
-    @Provides
     @ActivityScope
-    fun screenNavigator(activity: AppCompatActivity) = ScreenNavigator(activity)
+    @Binds
+    abstract fun screenNavigator(screenNavigator: ScreenNavigatorImplementation): ScreenNavigator
 
-    @Provides
-    fun layoutInflater(activity: AppCompatActivity) = activity.layoutInflater
+    companion object {
+        @Provides
+        fun layoutInflater(activity: AppCompatActivity) = activity.layoutInflater
 
-    @Provides
-    fun fragmentManager(activity: AppCompatActivity) = activity.supportFragmentManager
+        @Provides
+        fun fragmentManager(activity: AppCompatActivity) = activity.supportFragmentManager
+    }
 }

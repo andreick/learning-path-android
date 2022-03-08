@@ -3,7 +3,6 @@ package com.andreick.dependencyinjection.screens.common.activities
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.MyApplication
 import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityComponent
-import com.andreick.dependencyinjection.common.dependencyinjection.activity.ActivityModule
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -12,7 +11,6 @@ open class BaseActivity : AppCompatActivity() {
     val activityComponent: ActivityComponent by lazy {
         appComponent.activityComponentBuilder()
             .activity(this)
-            .activityModule(ActivityModule)
             .build()
     }
 

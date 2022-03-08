@@ -39,3 +39,7 @@ Class from [Dependency Injection in Android with Dagger 2 and Hilt](https://www.
   - Dagger generates more performant code for static providers in Modules (use companion object or top-level object in Kotlin)
   - @Component.Builder (or @Subcomponent.Builder) designates inner builder interface for Component
   - @BindInstance allows for injection of "bootstrapping dependencies" directly into Component builders
+- Type Bindings
+  - @Binds allows to map specific provided type to another provided type (e.g. provide implementation of an interface)
+  - Custom bindings using @Binds must be defined as abstract functions in abstract modules
+  - Abstract @Binds functions can't coexist with non-static provider methods in the same module
