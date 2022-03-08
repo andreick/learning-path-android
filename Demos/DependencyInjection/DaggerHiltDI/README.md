@@ -43,3 +43,7 @@ Class from [Dependency Injection in Android with Dagger 2 and Hilt](https://www.
   - @Binds allows to map specific provided type to another provided type (e.g. provide implementation of an interface)
   - Custom bindings using @Binds must be defined as abstract functions in abstract modules
   - Abstract @Binds functions can't coexist with non-static provider methods in the same module
+- Qualifiers
+  - Qualifiers are annotation classes annotated with @Qualifier
+  - From Dagger's standpoint, qualifiers are part of the type (e.g. @Q1 Service and @Q2 Service are different types)
+  - You can use the standard @Named(String) qualifier (not recommended)
