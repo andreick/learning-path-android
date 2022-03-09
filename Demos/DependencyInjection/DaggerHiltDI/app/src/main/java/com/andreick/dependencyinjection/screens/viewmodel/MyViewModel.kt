@@ -1,18 +1,16 @@
 package com.andreick.dependencyinjection.screens.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
 import com.andreick.dependencyinjection.questions.Question
 import kotlinx.coroutines.launch
 import java.lang.RuntimeException
 import javax.inject.Inject
+import javax.inject.Provider
 
 class MyViewModel @Inject constructor(
     private val fetchQuestionsUseCase: FetchQuestionsUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _questions = MutableLiveData<List<Question>>()
     val question: LiveData<List<Question>> = _questions
@@ -24,5 +22,12 @@ class MyViewModel @Inject constructor(
                 FetchQuestionsUseCase.Result.Failure -> throw RuntimeException("fetch failed")
             }
         }
+    }
+
+    class Factory @Inject constructor(
+        private val fetchQuestionsUseCaseProvider: Provider<FetchQuestionsUseCase>
+    ) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T =
+            MyViewModel(fetchQuestionsUseCaseProvider.get()) as T
     }
 }

@@ -2,9 +2,9 @@ package com.andreick.dependencyinjection.screens.viewmodel
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.andreick.dependencyinjection.R
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import com.andreick.dependencyinjection.screens.common.activities.BaseActivity
@@ -14,7 +14,9 @@ import javax.inject.Inject
 class ViewModelActivity : BaseActivity() {
 
     @Inject lateinit var screensNavigator: ScreenNavigator
-    @Inject lateinit var viewModel: MyViewModel
+    @Inject lateinit var viewModelFactory: MyViewModel.Factory
+
+    val viewModel: MyViewModel by viewModels { viewModelFactory }
 
     private lateinit var toolbar: MyToolbar
 
