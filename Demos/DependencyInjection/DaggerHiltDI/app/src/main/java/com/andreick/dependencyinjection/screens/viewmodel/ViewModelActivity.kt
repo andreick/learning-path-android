@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.andreick.dependencyinjection.R
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import com.andreick.dependencyinjection.screens.common.activities.BaseActivity
@@ -13,6 +14,7 @@ import javax.inject.Inject
 class ViewModelActivity : BaseActivity() {
 
     @Inject lateinit var screensNavigator: ScreenNavigator
+    @Inject lateinit var viewModel: MyViewModel
 
     private lateinit var toolbar: MyToolbar
 
@@ -25,6 +27,11 @@ class ViewModelActivity : BaseActivity() {
         toolbar = findViewById(R.id.toolbar)
         toolbar.setNavigateUpListener {
             screensNavigator.navigateBack()
+        }
+
+        viewModel.question.observe(this) { questions ->
+            Toast.makeText(this, "fetched ${questions.size} questions", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
