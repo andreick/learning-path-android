@@ -17,6 +17,7 @@ class QuestionsListViewMvc(
     interface Listener {
         fun onRefresh()
         fun onQuestionClicked(clickedQuestion: Question)
+        fun onViewModelClicked()
     }
 
     private val binding = LayoutQuestionsListBinding.inflate(layoutInflater, parent, false)
@@ -25,6 +26,12 @@ class QuestionsListViewMvc(
     override val rootView get() = binding.root
 
     init {
+        binding.toolbar.setViewModelListener {
+            for (listener in listeners) {
+                listener.onViewModelClicked()
+            }
+        }
+
         // init pull-down-to-refresh
         binding.swipeRefresh.setOnRefreshListener {
             for (listener in listeners)
