@@ -1,6 +1,7 @@
 package com.andreick.dependencyinjection.screens.viewmodel
 
 import androidx.lifecycle.*
+import com.andreick.dependencyinjection.questions.FetchQuestionDetailsUseCase
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
 import com.andreick.dependencyinjection.questions.Question
 import kotlinx.coroutines.launch
@@ -9,7 +10,8 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class MyViewModel @Inject constructor(
-    private val fetchQuestionsUseCase: FetchQuestionsUseCase
+    private val fetchQuestionsUseCase: FetchQuestionsUseCase,
+    private val fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
 ) : ViewModel() {
 
     private val _questions = MutableLiveData<List<Question>>()
@@ -25,9 +27,9 @@ class MyViewModel @Inject constructor(
     }
 
     class Factory @Inject constructor(
-        private val fetchQuestionsUseCaseProvider: Provider<FetchQuestionsUseCase>
+        private val myViewModelProvider: Provider<MyViewModel>
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T =
-            MyViewModel(fetchQuestionsUseCaseProvider.get()) as T
+            myViewModelProvider.get() as T
     }
 }
