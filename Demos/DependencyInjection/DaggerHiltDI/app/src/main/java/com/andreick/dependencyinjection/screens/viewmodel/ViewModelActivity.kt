@@ -17,8 +17,8 @@ class ViewModelActivity : BaseActivity() {
     @Inject lateinit var screensNavigator: ScreenNavigator
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var viewModel: MyViewModel
-    lateinit var otherViewModel: MyOtherViewModel
+    private lateinit var viewModel: MyViewModel
+    private lateinit var otherViewModel: MyOtherViewModel
 
     private lateinit var toolbar: MyToolbar
 

@@ -2,20 +2,16 @@ package com.andreick.dependencyinjection.screens.common.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.andreick.dependencyinjection.screens.viewmodel.MyOtherViewModel
-import com.andreick.dependencyinjection.screens.viewmodel.MyViewModel
-import java.lang.RuntimeException
 import javax.inject.Inject
 import javax.inject.Provider
 
 class ViewModelFactory @Inject constructor(
-    private val myViewModelProvider: Provider<MyViewModel>,
-    private val myOtherViewModelProvider: Provider<MyOtherViewModel>
+    private val providers: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T =
-        when(modelClass) {
-            MyViewModel::class.java -> myViewModelProvider.get() as T
-            MyOtherViewModel::class.java -> myOtherViewModelProvider.get() as T
-            else -> throw RuntimeException("Unsupported ViewModel type: $modelClass")
-        }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        val provider = providers[modelClass]
+            ?: throw RuntimeException("Unsupported ViewModel type: $modelClass")
+        @Suppress("UNCHECKED_CAST")
+        return provider.get() as T
+    }
 }

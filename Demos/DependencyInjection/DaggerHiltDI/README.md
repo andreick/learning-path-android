@@ -51,3 +51,8 @@ Class from [Dependency Injection in Android with Dagger 2 and Hilt](https://www.
   - Provider<Type> wrappers are "windows" into Dagger's object graph and allow you to retrieve a single type of services
   - Providers are basically "extensions" of composition roots
   - You use Providers when you need to perform "late injection" (e.g. Factory)
+- Multibinding
+  - @IntoMap annotation can be used to bind multiple services of the same type into Map data structure
+  - Keys of individual services in the Map are defined with a custom annotation, annotated with @MapKey annotation
+  - Dagger will automatically provide the following Map: `Map<key_type, Provider<service_type>>`
+  - Use @JvmSuppressWildcards at injection site to make it work in Kotlin
