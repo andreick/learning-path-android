@@ -4,19 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.andreick.dependencyinjection.R
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import com.andreick.dependencyinjection.screens.common.activities.BaseActivity
 import com.andreick.dependencyinjection.screens.common.toolbar.MyToolbar
+import com.andreick.dependencyinjection.screens.common.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
 class ViewModelActivity : BaseActivity() {
 
     @Inject lateinit var screensNavigator: ScreenNavigator
-    @Inject lateinit var viewModelFactory: MyViewModel.Factory
+    @Inject lateinit var viewModelFactory: ViewModelFactory
 
-    val viewModel: MyViewModel by viewModels { viewModelFactory }
+    lateinit var viewModel: MyViewModel
+    lateinit var otherViewModel: MyOtherViewModel
 
     private lateinit var toolbar: MyToolbar
 
@@ -30,6 +32,9 @@ class ViewModelActivity : BaseActivity() {
         toolbar.setNavigateUpListener {
             screensNavigator.navigateBack()
         }
+
+        viewModel = ViewModelProvider(this, viewModelFactory)[MyViewModel::class.java]
+        otherViewModel = ViewModelProvider(this, viewModelFactory)[MyOtherViewModel::class.java]
 
         viewModel.question.observe(this) { questions ->
             Toast.makeText(this, "fetched ${questions.size} questions", Toast.LENGTH_SHORT)
