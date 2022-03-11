@@ -7,7 +7,7 @@ import com.andreick.dependencyinjection.screens.viewmodel.ViewModelActivity
 import dagger.Subcomponent
 
 @PresentationScope
-@Subcomponent(modules = [ViewModelsModule::class])
+@Subcomponent(modules = [PresentationModule::class])
 interface PresentationComponent {
 
     fun inject(fragment: QuestionsListFragment)

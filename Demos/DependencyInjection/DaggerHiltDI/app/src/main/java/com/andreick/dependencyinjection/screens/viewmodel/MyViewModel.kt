@@ -1,29 +1,33 @@
 package com.andreick.dependencyinjection.screens.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.andreick.dependencyinjection.questions.FetchQuestionDetailsUseCase
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
 import com.andreick.dependencyinjection.questions.Question
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MyViewModel @Inject constructor(
     private val fetchQuestionsUseCase: FetchQuestionsUseCase,
-    private val fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
+    private val fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase,
+    handle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _questions = MutableLiveData<List<Question>>()
+    private val _questions: MutableLiveData<List<Question>> = handle.getLiveData(QUESTIONS_KEY)
     val question: LiveData<List<Question>> = _questions
 
     init {
         viewModelScope.launch {
+            delay(5000)
             when (val result = fetchQuestionsUseCase.fetchLatestQuestions()) {
                 is FetchQuestionsUseCase.Result.Success -> _questions.value = result.questions
                 FetchQuestionsUseCase.Result.Failure -> throw RuntimeException("fetch failed")
             }
         }
+    }
+
+    companion object {
+        private const val QUESTIONS_KEY = "questions"
     }
 }
