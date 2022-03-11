@@ -4,20 +4,22 @@ import androidx.lifecycle.*
 import com.andreick.dependencyinjection.questions.FetchQuestionDetailsUseCase
 import com.andreick.dependencyinjection.questions.FetchQuestionsUseCase
 import com.andreick.dependencyinjection.questions.Question
+import com.andreick.dependencyinjection.screens.common.viewmodels.SavedStateViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MyViewModel @Inject constructor(
     private val fetchQuestionsUseCase: FetchQuestionsUseCase,
-    private val fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase,
-    handle: SavedStateHandle
-) : ViewModel() {
+    private val fetchQuestionDetailsUseCase: FetchQuestionDetailsUseCase
+) : SavedStateViewModel() {
 
-    private val _questions: MutableLiveData<List<Question>> = handle.getLiveData(QUESTIONS_KEY)
-    val question: LiveData<List<Question>> = _questions
+    private lateinit var _questions: MutableLiveData<List<Question>>
+    val question: LiveData<List<Question>> get() = _questions
 
-    init {
+    override fun init(handle: SavedStateHandle) {
+        _questions = handle.getLiveData(QUESTIONS_KEY)
+
         viewModelScope.launch {
             delay(5000)
             when (val result = fetchQuestionsUseCase.fetchLatestQuestions()) {

@@ -12,8 +12,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class ViewModelFactory @Inject constructor(
-    private val fetchQuestionDetailsUseCaseProvider: Provider<FetchQuestionDetailsUseCase>,
-    private val fetchQuestionsUseCaseProvider: Provider<FetchQuestionsUseCase>,
+    private val providerMap: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>,
     savedStateRegistryOwner: SavedStateRegistryOwner
 ) : AbstractSavedStateViewModelFactory(savedStateRegistryOwner, null) {
 
@@ -22,17 +21,22 @@ class ViewModelFactory @Inject constructor(
         modelClass: Class<T>,
         handle: SavedStateHandle
     ): T {
-        @Suppress("UNCHECKED_CAST")
-        return when (modelClass) {
-            MyViewModel::class.java -> MyViewModel(
-                fetchQuestionsUseCaseProvider.get(),
-                fetchQuestionDetailsUseCaseProvider.get(),
-                handle
-            ) as T
-            MyOtherViewModel::class.java -> MyOtherViewModel(
-                fetchQuestionsUseCaseProvider.get()
-            ) as T
-            else -> throw RuntimeException("Unsupported ViewModel type: $modelClass")
-        }
+//        @Suppress("UNCHECKED_CAST")
+//        return when (modelClass) {
+//            MyViewModel::class.java -> MyViewModel(
+//                fetchQuestionsUseCaseProvider.get(),
+//                fetchQuestionDetailsUseCaseProvider.get()
+//            ) as T
+//            MyOtherViewModel::class.java -> MyOtherViewModel(
+//                fetchQuestionsUseCaseProvider.get()
+//            ) as T
+//            else -> throw RuntimeException("Unsupported ViewModel type: $modelClass")
+//        }.also { viewModel ->
+//            if (viewModel is SavedStateViewModel) viewModel.init(handle)
+//        }
+        val provider = providerMap[modelClass]
+            ?: throw RuntimeException("Unsupported ViewModel type: $modelClass")
+        val viewModel = provider.get().also { if (it is SavedStateViewModel) it.init(handle) }
+        @Suppress("UNCHECKED_CAST") return viewModel as T
     }
 }
