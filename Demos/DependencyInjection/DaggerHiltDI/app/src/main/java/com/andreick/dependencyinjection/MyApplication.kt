@@ -1,15 +1,7 @@
 package com.andreick.dependencyinjection
 
 import android.app.Application
-import com.andreick.dependencyinjection.common.dependencyinjection.app.AppComponent
-import com.andreick.dependencyinjection.common.dependencyinjection.app.AppModule
-import com.andreick.dependencyinjection.common.dependencyinjection.app.DaggerAppComponent
+import dagger.hilt.android.HiltAndroidApp
 
-class MyApplication : Application() {
-
-    val appComponent: AppComponent by lazy {
-        DaggerAppComponent.builder()
-            .appModule(AppModule(this))
-            .build()
-    }
-}
+@HiltAndroidApp
+class MyApplication : Application()
