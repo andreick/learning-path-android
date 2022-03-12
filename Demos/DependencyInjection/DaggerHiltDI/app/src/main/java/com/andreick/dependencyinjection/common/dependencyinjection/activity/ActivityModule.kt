@@ -1,5 +1,6 @@
 package com.andreick.dependencyinjection.common.dependencyinjection.activity
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import com.andreick.dependencyinjection.screens.common.ScreenNavigatorImplementation
@@ -20,7 +21,10 @@ abstract class ActivityModule {
 
     companion object {
         @Provides
-        fun layoutInflater(activity: AppCompatActivity) = activity.layoutInflater
+        fun appCompactActivity(activity: Activity) = activity as AppCompatActivity
+
+        @Provides
+        fun layoutInflater(activity: Activity) = activity.layoutInflater
 
         @Provides
         fun fragmentManager(activity: AppCompatActivity) = activity.supportFragmentManager
