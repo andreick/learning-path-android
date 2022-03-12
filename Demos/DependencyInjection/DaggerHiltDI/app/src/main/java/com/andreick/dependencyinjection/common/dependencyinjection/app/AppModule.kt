@@ -1,16 +1,18 @@
 package com.andreick.dependencyinjection.common.dependencyinjection.app
 
-import android.app.Application
 import com.andreick.dependencyinjection.common.dependencyinjection.MainRetrofit
 import com.andreick.dependencyinjection.networking.StackoverflowApi
 import com.andreick.dependencyinjection.networking.UrlProvider
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-class AppModule(val application: Application) {
+@InstallIn(SingletonComponent::class)
+class AppModule {
 
     @Provides
     @AppScope
@@ -30,9 +32,6 @@ class AppModule(val application: Application) {
     @Provides
     @AppScope
     fun urlProvider() = UrlProvider()
-
-    @Provides
-    fun application() = application
 
     @Provides
     @AppScope

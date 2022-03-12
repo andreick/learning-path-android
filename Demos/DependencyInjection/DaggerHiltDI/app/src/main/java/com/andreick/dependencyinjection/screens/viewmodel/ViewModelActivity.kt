@@ -10,8 +10,10 @@ import com.andreick.dependencyinjection.screens.common.ScreenNavigator
 import com.andreick.dependencyinjection.screens.common.activities.BaseActivity
 import com.andreick.dependencyinjection.screens.common.toolbar.MyToolbar
 import com.andreick.dependencyinjection.screens.common.viewmodels.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class ViewModelActivity : BaseActivity() {
 
     @Inject lateinit var screensNavigator: ScreenNavigator
@@ -24,7 +26,6 @@ class ViewModelActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        injector.inject(this)
 
         setContentView(R.layout.layout_view_model)
 
