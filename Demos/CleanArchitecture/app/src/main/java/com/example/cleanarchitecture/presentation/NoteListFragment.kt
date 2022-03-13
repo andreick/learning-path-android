@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cleanarchitecture.databinding.FragmentListBinding
 import com.example.cleanarchitecture.framework.viewmodels.NoteListViewModel
+import javax.inject.Inject
 
-class NoteListFragment : Fragment(), NoteListAction {
+class NoteListFragment : BaseFragment(), NoteListAction {
 
+    @Inject lateinit var viewModelFactory: NoteListViewModel.Factory
+
+    private val viewModel: NoteListViewModel by viewModels { viewModelFactory }
     private val noteAdapter = NoteListAdapter(action = this)
-    private val viewModel: NoteListViewModel by viewModels()
+
     private lateinit var binding: FragmentListBinding
 
     override fun onCreateView(
@@ -27,6 +30,7 @@ class NoteListFragment : Fragment(), NoteListAction {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        injector.inject(this)
         setRecyclerView()
         observeViewModel()
         binding.fabAddNote.setOnClickListener { goToNoteDetails() }

@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cleanarchitecture.R
@@ -12,13 +11,17 @@ import com.example.cleanarchitecture.databinding.FragmentNoteBinding
 import com.example.cleanarchitecture.framework.viewmodels.NoteViewModel
 import com.example.cleanarchitecture.utilities.showToast
 import com.example.core.data.Note
+import javax.inject.Inject
 
-class NoteFragment : Fragment() {
+class NoteFragment : BaseFragment() {
 
-    private val viewModel: NoteViewModel by viewModels()
-    private lateinit var binding: FragmentNoteBinding
+    @Inject lateinit var viewModelFactory: NoteViewModel.Factory
+
+    private val viewModel: NoteViewModel by viewModels { viewModelFactory }
     private var currentNote = Note(title = "", content = "", creationTime = 0L, updateTime = 0L)
     private var noteId = 0L
+
+    private lateinit var binding: FragmentNoteBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +34,14 @@ class NoteFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.action_delete_note -> {
                 if (noteId != 0L) {
                     AlertDialog.Builder(context)
                         .setTitle("Delete note")
                         .setMessage("Are you sure you want to delete this note?")
                         .setPositiveButton("Yes") { _, _ -> viewModel.deleteNote(currentNote) }
-                        .setNegativeButton("Cancel") { _, _ ->}
+                        .setNegativeButton("Cancel") { _, _ -> }
                         .create().show()
                 }
             }
@@ -56,6 +59,7 @@ class NoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        injector.inject(this)
         arguments?.let {
             noteId = NoteFragmentArgs.fromBundle(it).noteId
         }
