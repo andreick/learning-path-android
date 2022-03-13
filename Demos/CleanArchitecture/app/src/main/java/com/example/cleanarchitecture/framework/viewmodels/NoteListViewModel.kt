@@ -3,15 +3,19 @@ package com.example.cleanarchitecture.framework.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cleanarchitecture.framework.UseCases
 import com.example.core.data.Note
+import com.example.core.usecase.GetAllNotes
+import com.example.core.usecase.GetWordCount
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
 
-class NoteListViewModel @Inject constructor(private val useCases: UseCases) : ViewModel() {
+class NoteListViewModel @Inject constructor(
+    private val getAllNotesUseCase: GetAllNotes,
+    private val getWordCountUseCase: GetWordCount
+) : ViewModel() {
 
     val noteList = MutableLiveData<List<Note>>()
 
@@ -19,8 +23,8 @@ class NoteListViewModel @Inject constructor(private val useCases: UseCases) : Vi
 
     fun getAllNotes() {
         coroutineScope.launch {
-            val notes = useCases.getAllNotes()
-            notes.forEach { it.wordCount = useCases.getWordCount(it) }
+            val notes = getAllNotesUseCase()
+            notes.forEach { it.wordCount = getWordCountUseCase(it) }
             noteList.postValue(notes)
         }
     }

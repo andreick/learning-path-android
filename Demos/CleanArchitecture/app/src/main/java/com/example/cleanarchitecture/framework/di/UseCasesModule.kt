@@ -1,16 +1,24 @@
 package com.example.cleanarchitecture.framework.di
 
-import com.example.cleanarchitecture.framework.UseCases
 import com.example.core.repository.NoteRepository
 import com.example.core.usecase.*
 import dagger.Module
 import dagger.Provides
 
 @Module
-class UseCasesModule {
+object UseCasesModule {
     @Provides
-    fun getUseCases(repository: NoteRepository) = UseCases(
-        AddNote(repository), GetAllNotes(repository), GetNote(repository), RemoveNote(repository),
-        GetWordCount()
-    )
+    fun provideAddNote(repository: NoteRepository) = AddNote(repository)
+
+    @Provides
+    fun provideGetAllNotes(repository: NoteRepository) = GetAllNotes(repository)
+
+    @Provides
+    fun provideGetNote(repository: NoteRepository) = GetNote(repository)
+
+    @Provides
+    fun provideRemoveNote(repository: NoteRepository) = RemoveNote(repository)
+
+    @Provides
+    fun provideGetWordCount() = GetWordCount()
 }

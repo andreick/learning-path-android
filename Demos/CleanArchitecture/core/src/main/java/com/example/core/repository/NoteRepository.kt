@@ -2,13 +2,13 @@ package com.example.core.repository
 
 import com.example.core.data.Note
 
-class NoteRepository(private val dataSource: NoteDataSource) {
+interface NoteRepository {
 
-    suspend fun addNote(note: Note) = dataSource.add(note)
+    suspend fun add(note: Note)
 
-    suspend fun getNote(id: Long) = dataSource.get(id)
+    suspend fun get(id: Long): Note?
 
-    suspend fun getAllNotes() = dataSource.getAll()
+    suspend fun getAll(): List<Note>
 
-    suspend fun removeNote(note: Note) = dataSource.remove(note)
+    suspend fun remove(note: Note)
 }

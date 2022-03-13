@@ -1,13 +1,12 @@
 package com.example.cleanarchitecture.framework.di
 
-import android.app.Application
-import com.example.cleanarchitecture.framework.RoomNoteDataSource
+import com.example.cleanarchitecture.framework.RoomNoteRepository
 import com.example.core.repository.NoteRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 
 @Module
-class RepositoryModule {
-    @Provides
-    fun provideRepository(app: Application) = NoteRepository(RoomNoteDataSource(app))
+abstract class RepositoryModule {
+    @Binds
+    abstract fun bindNoteRepository(roomNoteRepository: RoomNoteRepository): NoteRepository
 }

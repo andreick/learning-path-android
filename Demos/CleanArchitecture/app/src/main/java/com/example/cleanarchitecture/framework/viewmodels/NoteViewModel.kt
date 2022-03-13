@@ -3,15 +3,21 @@ package com.example.cleanarchitecture.framework.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cleanarchitecture.framework.UseCases
 import com.example.core.data.Note
+import com.example.core.usecase.AddNote
+import com.example.core.usecase.GetNote
+import com.example.core.usecase.RemoveNote
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
 
-class NoteViewModel @Inject constructor(private val useCases: UseCases) : ViewModel() {
+class NoteViewModel @Inject constructor(
+    private val addNoteUseCase: AddNote,
+    private val getNoteUseCase: GetNote,
+    private val removeNoteUseCase: RemoveNote
+) : ViewModel() {
 
     val saved = MutableLiveData<Boolean>()
     val currentNote = MutableLiveData<Note?>()
@@ -20,21 +26,21 @@ class NoteViewModel @Inject constructor(private val useCases: UseCases) : ViewMo
 
     fun saveNote(note: Note) {
         coroutineScope.launch {
-            useCases.addNote(note)
+            addNoteUseCase(note)
             saved.postValue(true)
         }
     }
 
     fun getNote(id: Long) {
         coroutineScope.launch {
-            val note = useCases.getNote(id)
+            val note = getNoteUseCase(id)
             currentNote.postValue(note)
         }
     }
 
     fun deleteNote(note: Note) {
         coroutineScope.launch {
-            useCases.removeNote(note)
+            removeNoteUseCase(note)
             saved.postValue(true)
         }
     }
