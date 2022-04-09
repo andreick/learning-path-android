@@ -14,10 +14,13 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.andreick.camerax.databinding.ActivityMainBinding
+import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+
+typealias LumaListener = (luma: Double) -> Unit
 
 class MainActivity : AppCompatActivity() {
 
@@ -80,6 +83,11 @@ class MainActivity : AppCompatActivity() {
 
             imageCapture = ImageCapture.Builder().build()
 
+            val imageAnalyzer = ImageAnalysis.Builder().build()
+            imageAnalyzer.setAnalyzer(cameraExecutor, LuminosityAnalyzer { luma ->
+                Log.d(TAG, "Average luminosity: $luma")
+            })
+
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -90,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                 // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
                     this, cameraSelector,
-                    preview, imageCapture
+                    preview, imageCapture, imageAnalyzer
                 )
 
             } catch(exc: Exception) {
@@ -157,5 +165,27 @@ class MainActivity : AppCompatActivity() {
                 if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P)
                     add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             }.toTypedArray()
+    }
+
+    private class LuminosityAnalyzer(private val listener: LumaListener) : ImageAnalysis.Analyzer {
+
+        private fun ByteBuffer.toByteArray(): ByteArray {
+            rewind()    // Rewind the buffer to zero
+            val data = ByteArray(remaining())
+            get(data)   // Copy the buffer into a byte array
+            return data // Return the byte array
+        }
+
+        override fun analyze(image: ImageProxy) {
+
+            val buffer = image.planes[0].buffer
+            val data = buffer.toByteArray()
+            val pixels = data.map { it.toInt() and 0xFF }
+            val luma = pixels.average()
+
+            listener(luma)
+
+            image.close()
+        }
     }
 }
