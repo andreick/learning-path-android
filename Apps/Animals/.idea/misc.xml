@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/Apps/Animals/app/src/main/res/layout/fragment_animals.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/andreick.gomes/Documents/Studies/learning-path-android/Apps/Animals/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/andreick.gomes/Documents/Studies/learning-path-android/Apps/Animals/app/src/main/res/layout/animal_image.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/andreick.gomes/Documents/Studies/learning-path-android/Apps/Animals/app/src/main/res/layout/fragment_animal_detail.xml" value="0.36666666666666664" />
@@ -12,7 +13,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

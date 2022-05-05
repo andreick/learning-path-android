@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/Apps/DrawingApp/app/src/main/res/layout/dialog_brush_size.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Andreick/Documents/Estudos/Android/Apps/DrawingApp/app/src/main/res/layout/dialog_custom_progress.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Andreick/Documents/Estudos/Android/DrawingApp/app/src/main/res/drawable-v24/large_brush.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Andreick/Documents/Estudos/Android/DrawingApp/app/src/main/res/drawable-v24/medium_brush.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Andreick/Documents/Estudos/Android/DrawingApp/app/src/main/res/drawable-v24/pallet_selected.xml" value="0.22135416666666666" />
